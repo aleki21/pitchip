@@ -1,0 +1,38 @@
+<div class="navbar navbar-inverse" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/"> Pitch Perfect</a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href='#' id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Categories
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                      <ul>
+                        <li><a class="dropdown-item text-left" href="{{url_for('auth.login')}}">Comical pitches</a></li>
+                        <br>
+                        <li><a class="dropdown-item text-left" href="{{url_for('auth.login')}}">Innovation pitches</a></li>
+                        <br>
+                        <li><a class="dropdown-item text-left" href="{{url_for('auth.login')}}">Technology pitches</a></li>
+                        <br>
+                        <li><a class="dropdown-item text-left" href="{{url_for('auth.login')}}">Product pitches</a></li>
+                        <br>
+                        <li><a class="dropdown-item text-left" href="{{url_for('auth.login')}}">Marketing pitches</a></li>
+                      </ul>
+                    </div>
+                  </li>
+                <li><a href="{{url_for('auth.register')}}">Sign Up</a></li>
+                {% if current_user.is_authenticated %}
+                <li><a href="{{url_for('auth.logout')}}">Sign out</a></li>
+                <li><a href="{{url_for('main.new_pitch',uname=current_user.username)}}">create pitch</a></li>
+                <li><a href="{{url_for('main.profile',uname=current_user.username)}}">my profile</a></li>
+                {% else %}
+                <li><a href="{{url_for('auth.login')}}">Sign in</a></li> 
+                {% endif %}               
+                
+        </div>
+
+    </div>
+</div>

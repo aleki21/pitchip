@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+<!-- Styles block -->
+
+{% block styles%}
+    {{ super() }}
+    <link rel="stylesheet" href="{{url_for('static',filename='css/index.css')}}">
+    <link rel="stylesheet"
+  href="https://fonts.googleapis.com/css?family=Font+Name">
+ <link href="https://fonts.googleapis.com/css2?family=Itim&display=swap" rel="stylesheet">
+
+{% endblock %}
+
+<!-- Content block -->
+{% block content%}
+<div class="container">
+<h1>Pitch Perfect</h1>
+</div>
+<div id="card-header">
+<!--Intro paragraph-->
+<h3>Create one minute pitches for various categories and let other people tell you how they feel about your pitch</h3>
+</div>
+<div id="card-body">
+    <div class="font-effect-anaglyph">Pitch until it's perfect<div>
+<!--Pitches available-->
+<h2>Pitches</h2>
+<ul>
+    {% for recent_pitches in pitches %}
+        <li>Pitches go here</li>
+    {% endfor %}
+</ul>
+</div>
+{% endblock %}

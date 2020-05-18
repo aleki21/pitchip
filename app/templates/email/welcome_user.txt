@@ -1,0 +1,3 @@
+Hello {{user.username}}
+Welcome to Pitch Perfect. We are so excited to have you join us.
+Please feel free to create,review and view pitches in our application. We hope you enjoy, and that this is the beginning of a long friendship.
