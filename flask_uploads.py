@@ -24,7 +24,7 @@ import posixpath
 from flask import current_app, send_from_directory, abort, url_for
 from itertools import chain
 from werkzeug.utils import secure_filename
-from werkzeug.datastructures import FileStorage
+from werkzeug.datastructures import  FileStorage
 
 from flask import Blueprint
 

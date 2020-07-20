@@ -10,7 +10,7 @@ A python application to allow users to design pitches, view other people's pitch
 * Heroku
 
 # Author: 
-> Edwin Karanu Muiruri
+> Alex Kimutai
 
 # Dependencies
 * The application uses flask, therefore the need to install flask in a virtual env in the case of forking/cloning.
@@ -22,8 +22,9 @@ A python application to allow users to design pitches, view other people's pitch
 * The sign up page may throw an error, but if you prooceed to sign in, the application works well.
 
 # Contact information.
-> edwin.karanu.muiruri@gmail.com
+> alexkimutai021@gmail.com
 
 # License and Copyright information.
 > The MIT License (MIT) Copyright © 2020.
-> Edwin Karanu Muiruri © 2020.
+> Alex Kimutai © 2020.
+ 
