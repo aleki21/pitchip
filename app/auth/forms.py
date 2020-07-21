@@ -1,26 +1,26 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField,PasswordField,BooleanField,SubmitField
-from wtforms.validators import Required,Email,EqualTo
+from wtforms import StringField,PasswordField,SubmitField,ValidationError,BooleanField
+from wtforms.validators import Required,Email,EqualTo,Length
 from ..models import User
-from wtforms import ValidationError
+from email_validator import validate_email, EmailNotValidError
 
 class SignUpForm(FlaskForm):
     email = StringField('Your Email Address',validators=[Required(),Email()])
-    username = StringField('Input your username',validators=[Required()])
-    password = PasswordField('Enter your password',validators=[Required(),EqualTo('password_confirm',message='Password shoud match user')])
-    password_confirm = PasswordField('Confirm password',validators=[Required()])
-    submit = SubmitField('Sign up')
+    username = StringField('Enter your username',validators = [Required(),Length(min=2,max=20)])
+    password = PasswordField('Password',validators = [Required()])
+    password_confirm = PasswordField('Confirm Passwords',validators = [Required(), EqualTo('password',message = 'Passwords must match')])
+    submit = SubmitField('Sign Up')
 
     def validate_email(self,data_field):
-        if User.query.filter_by(email = data_field.data).first():
-            raise ValidationError('Another account with that email exists')
+            if User.query.filter_by(email =data_field.data).first():
+                raise ValidationError('There is an account with that email')
 
     def validate_username(self,data_field):
         if User.query.filter_by(username = data_field.data).first():
-            raise ValidationError('Username already taken')
+            raise ValidationError('That username is taken')
 
 class LoginForm(FlaskForm):
-    email = StringField('Your email address',validators=[Required(),Email()])
-    password = PasswordField('Password',validators=[Required()])
-    remember = BooleanField('Remember me')
+    email = StringField('Your Email Address',validators=[Required(),Email()])
+    password = PasswordField('Password',validators =[Required()])
+    remember = BooleanField('Remember Me') #confirms if user wants to be logged out after session
     submit = SubmitField('Sign In')

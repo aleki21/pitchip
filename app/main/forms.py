@@ -1,18 +1,21 @@
-from flask_wtf import FlaskForm
-from wtforms import StringField,TextAreaField,SubmitField,SelectField
+from flask_wtf import FlaskForm 
+from wtforms import SubmitField,TextAreaField,StringField,SelectField
 from wtforms.validators import Required
 
-class PitchReviewForm(FlaskForm):
-    title = StringField('Review title', validators=[Required()])
-    review = TextAreaField('Pitch review', validators=[Required()])
-    submit = SubmitField('Submit')
-
 class UpdateProfile(FlaskForm):
-    bio = TextAreaField('Tell us more about yourself',validators = [Required()])
+    bio = TextAreaField('Tell us about you.',validators = [Required()])
     submit = SubmitField('Submit')
 
 class PitchForm(FlaskForm):
-    category = SelectField('Category', choices=[('', ''), ('comical', 'Comical pitches'), ('innovation', 'Innovation pitches'), ('technology', 'Technology pitches'), ('product', 'Product pitches'), ('marketing', 'Marketing pitches')], validators = [Required()])
-    title = StringField('Pitch title', validators = [Required()])
-    pitch = TextAreaField('Pitch', validators = [Required()])
+    title = StringField("Pitch Title", validators = [Required()])
+    category = SelectField("What category are you submitting to?", choices=[("Twitter", "Twitter Pitches"), ( "Elevator", "Elevator Pitches"), ("Competition", "Competition Pitches"), ("Investor", "Investor Pitches")],validators=[Required()])
+    pitch_content = TextAreaField('What pitch do you want to share?',validators = [Required()] )
+    submit = SubmitField('Submit')
+
+class CommentForm(FlaskForm):
+    comment_content = TextAreaField('Add a comment',validators = [Required()] )
+    submit = SubmitField('Submit')
+
+class CategoryForm(FlaskForm):
+    category_name = TextAreaField('Add a category', validators=[Required()])
     submit = SubmitField('Submit')
