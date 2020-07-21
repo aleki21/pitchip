@@ -14,11 +14,9 @@ def index():
     categories = Category.query.all()
     return render_template('index.html', title=title, categories=categories) 
     
-@main.route('/category/add-category', methods=['GET', 'POST'])
+@main.route('/add-category', methods=['GET', 'POST'])
 def add_category():
     form = CategoryForm()
-    if current_user.username != "aleki21":
-        abort(404)
     if form.validate_on_submit():
         category = Category(category_name=form.category_name.data)
         db.session.add(category)
@@ -92,7 +90,12 @@ def new_pitch():
     categories = Category.query.all()
     if form.validate_on_submit():
         category_id=(Category.get_category_name(form.category.data))
-        pitch = Pitch(pitch_content=form.pitch_content.data, pitcher=current_user, title=form.title.data, category_id=(Category.get_category_name(form.category.data)), upvotes= 0, downvotes=0)
+        pitch = Pitch(
+            pitch_content=form.pitch_content.data, 
+            pitcher=current_user, title=form.title.data, 
+            category_id=(Category.get_category_name(form.category.data)), 
+            upvotes= 0, 
+            downvotes=0)
         db.session.add(pitch)
         db.session.commit()
         flash('Your pitch has been posted!', 'success')

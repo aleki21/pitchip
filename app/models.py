@@ -44,10 +44,16 @@ class Category(db.Model):
     category_name = db.Column(db.String())
     pitches = db.relationship("Pitch", backref ="category", lazy= "dynamic")
 
+    def save_category_name(self):
+        db.session.add(self)
+        db.session.commit()
+
     @classmethod
     def get_category_name(cls,category_name):
         categoryName = Category.query.filter_by(category_name = category_name).first()
-        return categoryName
+        print('categoryname',categoryName) 
+        return categoryName.id
+
 
     def __repr__(self):
         return f'Category{self.category_name}' 
